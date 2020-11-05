@@ -41,7 +41,7 @@ import (
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
 	v1 "k8s.io/api/core/v1"
-	"k8s.io/api/extensions/v1beta1"
+	networkingv1 "k8s.io/api/networking/v1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -876,9 +876,9 @@ func serviceForVaultConfigurer(v *vaultv1alpha1.Vault) *corev1.Service {
 	return service
 }
 
-func ingressForVault(v *vaultv1alpha1.Vault) *v1beta1.Ingress {
+func ingressForVault(v *vaultv1alpha1.Vault) *networkingv1.Ingress {
 	if ingress := v.GetIngress(); ingress != nil {
-		return &v1beta1.Ingress{
+		return &networkingv1.Ingress{
 			ObjectMeta: metav1.ObjectMeta{
 				Name:        v.Name,
 				Namespace:   v.Namespace,
