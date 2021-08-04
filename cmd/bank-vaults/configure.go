@@ -47,6 +47,8 @@ var configureCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		var unsealConfig unsealCfg
 
+		c.BindPFlag(cfgOnce, cmd.PersistentFlags().Lookup(cfgOnce))
+
 		runOnce := c.GetBool(cfgOnce)
 		errorFatal := c.GetBool(cfgFatal)
 		unsealConfig.unsealPeriod = c.GetDuration(cfgUnsealPeriod)
